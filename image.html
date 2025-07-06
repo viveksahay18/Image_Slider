@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slider image</title>
+  <style>
+    /* ====== Slider ====== */
+	body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0; 
+}
+    .slider-container {
+      position: relative;
+      max-width: 100%;
+      overflow: hidden;
+      margin: 0px auto;
+    }
+	
+
+    .slider {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slider img {
+      width: 100%;
+	  height: auto;
+	  display: block;
+    }
+
+    .slider-buttons {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      padding: 0 10px;
+    }
+
+    .slider-button {
+      background-color: rgba(0, 0, 0, 0.5);
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      color: white;
+      font-size: 24px;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+
+
+  <!-- ======= Image Slider ======= -->
+  <section class="slider-container">
+    <div class="slider">
+      <img src="img/m1.jfif" alt="Agri Image 1">
+      <img src="img/m2.jfif" alt="Agri Image 2">
+      <img src="img/m3.jfif" alt="Agri Image 3">
+	  <img src="img/m4.jfif" alt="Agri Image 4">
+      <img src="img/m5.jfif" alt="Agri Image 5">
+      <img src="img/m6.jfif" alt="Agri Image 6">
+      <img src="img/m8.jfif" alt="Agri Image 2">
+      <img src="img/m9.jfif" alt="Agri Image 3">
+	  <img src="img/m10.jfif" alt="Agri Image 4">
+      <img src="img/m11.jfif" alt="Agri Image 5">
+      <img src="img/m12.jfif" alt="Agri Image 6">
+	  <img src="img/m1.jfif" alt="Agri Image 1">
+      <img src="img/m13.jfif" alt="Agri Image 2">
+      <img src="img/m14.jfif" alt="Agri Image 3">
+	  <img src="img/m15.jfif" alt="Agri Image 4">
+      <img src="img/m16.jfif" alt="Agri Image 5">
+      <img src="img/m17.jfif" alt="Agri Image 6">
+	  <img src="img/m18.jfif" alt="Agri Image 5">
+      <img src="img/m19.jfif" alt="Agri Image 6">
+	  <img src="img/m14.jfif" alt="Agri Image 3">
+	  <img src="img/m1.jfif" alt="Agri Image 1">
+    </div>
+    <div class="slider-buttons">
+      <button class="slider-button" id="prevBtn">&#10094;</button>
+      <button class="slider-button" id="nextBtn">&#10095;</button>
+    </div>
+  </section>
+<script>
+  const slider = document.querySelector('.slider');
+  const images = document.querySelectorAll('.slider img');
+  let currentIndex = 0;
+
+  function showImage(index) {
+    const width = images[0].clientWidth;
+    slider.style.transform = `translateX(-${index * width}px)`;
+  }
+
+  function nextImage() {
+    currentIndex = (currentIndex + 1) % images.length;
+    showImage(currentIndex);
+  }
+
+  function prevImage() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    showImage(currentIndex);
+  }
+
+  document.getElementById('nextBtn').addEventListener('click', nextImage);
+  document.getElementById('prevBtn').addEventListener('click', prevImage);
+
+  // Auto-move every 3 seconds (3000ms)
+  setInterval(nextImage, 3000);
+
+  // Adjust on window resize
+  window.addEventListener('resize', () => showImage(currentIndex));
+
+  // Initialize position
+  showImage(currentIndex);
+</script>
+
+
+</body>
+</html>
